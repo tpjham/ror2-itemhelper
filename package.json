@@ -1,21 +1,49 @@
 {
   "name": "ror2-itemhelper",
   "version": "0.1.0",
-  "private": true,
+  "description": "Electron.js based overlay for Risk of Rain 2's Artifact of Command item menus",
+  "author": {
+    "name": "Tomi H"
+  },
+  "private": false,
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "electron-overlay-window": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.1"
   },
+  "main": "electron.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "electron-pack": "electron-builder build -c.extraMetadata.main=build/electron.js"
+  },
+  "build": {
+    "appId": "ror2-itemhelper",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "productName": "Risk of Rain 2 - Item helper",
+    "mac": {
+      "category": "gaming"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +62,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^12.0.6",
+    "electron-builder": "^22.10.5"
   }
 }
